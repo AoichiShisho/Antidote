@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 67577e40bed4b0f428e3ee35e9d7909b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - InteractSign: {fileID: 7052766191154622271, guid: 493b224db75b6d74aadda0bff0870801, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

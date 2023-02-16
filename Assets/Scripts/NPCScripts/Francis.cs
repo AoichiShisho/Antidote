@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class Francis : NPCTalkBase
+public class Francis : NPC
 {
-    void Start() {
-        npcName = "Francis";
-        npcDialog = new string[] {"Hi!", "This is a test dialog!"};
-        FindDialogue();
-        HideDialogue();
+    public override void Start() {
+        base.Start();
+        speakerName = "Francis";
+        lines = new string[] {"Hi!", "This is a test dialog!"};
     }
 }

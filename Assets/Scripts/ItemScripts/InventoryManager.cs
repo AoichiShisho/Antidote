@@ -6,22 +6,41 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-    public List<Item> Items = new List<Item>();
+    public List<ItemProperties> Items = new List<ItemProperties>();
 
     public Transform ItemContent;
     public GameObject InventoryItem;
+
+    private bool isPanelOpen()
+    {
+        return GameObject.Find("Inventory") != null;
+    }
+
+    private void CreateItem(ItemProperties item)
+    {
+        GameObject obj = Instantiate(InventoryItem, ItemContent);
+        var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
+        var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+
+        itemName.text = item.itemName;
+        itemIcon.sprite = item.icon;
+    }
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void Add(Item item)
+    public void Add(ItemProperties item)
     {
         Items.Add(item);
+        if (isPanelOpen())
+        {
+            CreateItem(item);
+        }
     }
 
-    public void Remove(Item item)
+    public void Remove(ItemProperties item)
     {
         Items.Remove(item);
     }
@@ -36,12 +55,7 @@ public class InventoryManager : MonoBehaviour
 
         foreach (var item in Items)
         {
-            GameObject obj = Instantiate(InventoryItem, ItemContent);
-            var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
-            var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-
-            itemName.text = item.itemName;
-            itemIcon.sprite = item.icon;
+            CreateItem(item);
         }
     }
 }

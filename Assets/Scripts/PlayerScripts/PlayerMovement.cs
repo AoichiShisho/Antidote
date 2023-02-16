@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 300.0f;
     public bool isJumping = false;    
 
-    public Image dialogueSign;
 
     // Start is called before the first frame update
     void Start()
@@ -30,20 +29,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("floor")) {
             isJumping = false;
-        }
-    }
-
-    public void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("NPC")) {
-            dialogueSign.gameObject.SetActive(true);
-        }
-    }
-
-    public void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("NPC")) {
-            dialogueSign.gameObject.SetActive(false);
         }
     }
 

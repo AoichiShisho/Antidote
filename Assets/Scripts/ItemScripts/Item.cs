@@ -2,11 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Item/Create New Item")]
-public class Item : ScriptableObject
-{
-    public int id;
-    public string itemName;
-    public int value;
-    public Sprite icon;
+public class Item : IInteractable {
+    public ItemProperties item;
+
+    public override void DoInteraction()
+    {
+        if (gameObject.transform.parent && gameObject.transform.parent.TryGetComponent(out TravelItem parent)) {
+            // if the item time travels then we should interact
+            // with the parent instead
+            parent.DoInteraction();
+        } else {
+            InventoryManager.Instance.Add(item);
+            Destroy(gameObject);
+        }
+        StopInteraction();
+    }
+
+    public override void StopInteraction()
+    {
+        InteractSign.Instance.Hide();
+    }
 }
