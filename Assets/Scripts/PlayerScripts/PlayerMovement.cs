@@ -5,19 +5,17 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance;
     public float speed = 2.5f;
-
     public float jumpForce = 300.0f;
-    public bool isJumping = false;    
+    public bool isJumping = false;
+    private bool isFrozen = false;
 
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
         playerMovement();
@@ -32,7 +30,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SetFrozenStatus(bool status) {
+        isFrozen = status;
+    }
+
     private void playerMovement() {
+        if (isFrozen) return;
+
          // left
         if (Input.GetKey(KeyCode.A)) {
             transform.position += Vector3.back * speed * Time.deltaTime; 

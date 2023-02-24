@@ -27,7 +27,7 @@ public abstract class IInteractable : MonoBehaviour
     }
 
 
-    private bool IsPlayerInteracting()
+    protected virtual bool IsPlayerInteracting()
     {
         return isPlayerInContact && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E));
     }
