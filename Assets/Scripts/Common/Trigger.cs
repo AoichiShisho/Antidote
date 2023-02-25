@@ -29,6 +29,12 @@ public class Trigger : IDialogue
         return isPlayerInContact && IsInRightPeriod() && PlayerHasRequiredItems();
     }
 
+    protected override void OnCollisionStay(Collision collision)
+    {
+        base.OnCollisionStay(collision);
+        InteractSign.Instance.Hide();
+    }
+
     public override void DoInteraction()
     {
         if (!IsOneTimeTrigger || (IsOneTimeTrigger && !IsInteracted)){
