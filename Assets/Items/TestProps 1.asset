@@ -15,4 +15,4 @@ MonoBehaviour:
   id: 1
   itemName: Pastester
   value: 2
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 22d58d23e659c1446b067bf25817a119, type: 3}
