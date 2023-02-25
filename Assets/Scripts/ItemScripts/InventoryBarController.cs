@@ -8,7 +8,7 @@ public class InventoryBarController : MonoBehaviour
     public Button backpackButton;
     public GameObject inventoryBar;
     public GameObject itemContainer;
-    private bool isOpen = true; 
+    private bool isOpen = true, isUpdated = false;
     private static float TRANSITION_SPEED = 10f;
     public static InventoryBarController Instance;
     public static readonly Vector3 FIRST_ITEM_OFFSET = new Vector3(0, 0, 0);
@@ -34,6 +34,9 @@ public class InventoryBarController : MonoBehaviour
         t += TRANSITION_SPEED * Time.deltaTime * (isOpen ? 1 : -1);
         t = Mathf.Min(t, 1);
         t = Mathf.Max(t, 0);
+
+        if (t == 1f) UpdateOnce();
+        if (t == 0f) isUpdated = false;
     }
 
     public void ToggleState()
@@ -60,5 +63,11 @@ public class InventoryBarController : MonoBehaviour
             Image renderer = container.GetComponent<Image>();
             renderer.sprite = item.icon;
         }
-    } 
+    }
+
+    private void UpdateOnce()
+    {
+        if (!isUpdated) UpdateItems();
+        isUpdated = true;
+    }
 }
