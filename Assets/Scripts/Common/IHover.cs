@@ -13,7 +13,7 @@
         public abstract void DoHoverAction();
         public abstract void StopHoverAction();
 
-        public void Update()
+        public virtual void Update()
         {
             if (IsPointerOverElement())
             {
