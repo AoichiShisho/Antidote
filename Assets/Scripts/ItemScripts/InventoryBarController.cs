@@ -12,7 +12,7 @@ public class InventoryBarController : MonoBehaviour
     private static float TRANSITION_SPEED = 10f;
     public static InventoryBarController Instance;
     public static readonly Vector3 FIRST_ITEM_OFFSET = new Vector3(0, 0, 0);
-    public static readonly Vector3 EACH_ITEM_OFFSET = new Vector3(45, 0, 0);
+    public static readonly Vector3 EACH_ITEM_OFFSET = new Vector3(55, 0, 0);
 
     static float t = 1.0f;
 

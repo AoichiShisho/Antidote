@@ -21,7 +21,8 @@ public class TimePickerInterface : IHover
     public override void Update()
     {
         base.Update();
-        transform.position = new Vector3(Mathf.Lerp(810, 886, t), 401, 0);
+        // TODO: Remove magic numbers
+        transform.position = new Vector3(Mathf.Lerp(1160, 1240, t), 476.79f, 0);
         t += TRANSITION_SPEED * Time.deltaTime * (isOpen ? -1 : 1);
         t = Mathf.Min(t, 1);
         t = Mathf.Max(t, 0);

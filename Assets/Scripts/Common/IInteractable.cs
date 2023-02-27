@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public abstract class IInteractable : MonoBehaviour
 {
-    public bool isPlayerInContact = false;
+    [System.NonSerialized] public bool isPlayerInContact = false;
     private Vector3 InteractPosition;
     private bool InteractionOngoing;
     private static float MAX_INTERACTION_DISTANCE = .1f;

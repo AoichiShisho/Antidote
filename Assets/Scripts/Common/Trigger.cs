@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Trigger : IDialogue
 {
-    public bool IsOneTimeTrigger = true, IsInteracted = false;
-    public bool ShouldPlayerFreeze = true;
+    public bool IsOneTimeTrigger = true, ShouldPlayerFreeze = true;
+    [System.NonSerialized] public bool IsInteracted = false;
     public TimePeriod RequiredPeriod;
     public List<ItemProperties> RequiredItems;
 
