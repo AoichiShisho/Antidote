@@ -10,7 +10,6 @@ public class TimePickerInterface : IHover
     private bool isOpen = false;
     static float t = 1.0f;
     static readonly float TRANSITION_SPEED = 10f;
-    private int litIndicator = -1;
 
     public void Awake()
     {
@@ -22,7 +21,8 @@ public class TimePickerInterface : IHover
     {
         base.Update();
         // TODO: Remove magic numbers
-        transform.position = new Vector3(Mathf.Lerp(1160, 1240, t), 476.79f, 0);
+        // Debug.Log(transform.position);
+        transform.position = new Vector3(Mathf.Lerp(2320, 2400, t), 950, 0);
         t += TRANSITION_SPEED * Time.deltaTime * (isOpen ? -1 : 1);
         t = Mathf.Min(t, 1);
         t = Mathf.Max(t, 0);
