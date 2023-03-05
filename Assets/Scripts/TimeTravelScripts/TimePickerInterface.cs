@@ -10,19 +10,19 @@ public class TimePickerInterface : IHover
     private bool isOpen = false;
     static float t = 1.0f;
     static readonly float TRANSITION_SPEED = 10f;
+    static float StartingX;
 
     public void Awake()
     {
         prev.onClick.AddListener(UpdateIndicator);
         next.onClick.AddListener(UpdateIndicator);
+        StartingX = transform.position.x;
     }
 
     public override void Update()
     {
         base.Update();
-        // TODO: Remove magic numbers
-        // Debug.Log(transform.position);
-        transform.position = new Vector3(Mathf.Lerp(2320, 2400, t), 950, 0);
+        transform.position = new Vector3(Mathf.Lerp(StartingX - 80, StartingX, t), transform.position.y, transform.position.z);
         t += TRANSITION_SPEED * Time.deltaTime * (isOpen ? -1 : 1);
         t = Mathf.Min(t, 1);
         t = Mathf.Max(t, 0);

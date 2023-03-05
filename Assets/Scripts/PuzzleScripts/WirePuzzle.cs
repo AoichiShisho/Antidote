@@ -85,14 +85,14 @@ public class WirePuzzle : Puzzle
 
     private void Stretch(GameObject _sprite,Vector3 _initialPosition, Vector3 _finalPosition) 
     {
-        float width = _sprite.GetComponent<RectTransform>().rect.width * 1.2f;    
+        float width = _sprite.GetComponent<RectTransform>().rect.width * 1.01f; // offset width so mouse can click button    
         Vector3 centerPos = (_initialPosition + _finalPosition) / 2f;
         _sprite.transform.position = centerPos;
         Vector3 direction = _finalPosition - _initialPosition;
         direction = Vector3.Normalize(direction);
         _sprite.transform.right = direction;
         Vector3 scale = new Vector3(1,.2f,1);
-        scale.x = Vector3.Distance(_initialPosition, _finalPosition) / width; // cursed magic number
+        scale.x = Vector3.Distance(_initialPosition, _finalPosition) / width;
         _sprite.transform.localScale = scale;
      }
 
@@ -114,6 +114,7 @@ public class WirePuzzle : Puzzle
 
             // TODO: PuzzleTrigger should be responsible for this
             PlayerMovement.Instance.SetFrozenStatus(false);
+            InteractSign.Instance.Hide();
         }
     }
 }

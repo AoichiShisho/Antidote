@@ -39,6 +39,7 @@ public class TravelItem : ITravelItem
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(TravelItem))]
 public class TravelItemEditor : Editor
 {
@@ -61,3 +62,4 @@ public class TravelItemEditor : Editor
         obj.item = newItem.item;
     }
 }
+#endif
