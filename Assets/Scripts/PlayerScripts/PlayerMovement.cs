@@ -11,9 +11,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping = false;
     private bool isFrozen = false;
 
+    private Animator anim;
+    private SpriteRenderer sprite;
+
     void Awake()
     {
         Instance = this;
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -35,23 +40,40 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void playerMovement() {
-        if (isFrozen) return;
+        if (isFrozen) {
+            return;
+        }
 
          // left
         if (Input.GetKey(KeyCode.A)) {
             transform.position += Vector3.back * speed * Time.deltaTime; 
+            sprite.flipX = true;
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isFront", true);
         }
         // right
         if (Input.GetKey(KeyCode.D)) {
             transform.position += Vector3.forward * speed * Time.deltaTime;
+            sprite.flipX = false;
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isFront", true);
         }
         // forward
         if (Input.GetKey(KeyCode.W)) {
             transform.position += Vector3.left * speed * Time.deltaTime;
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isFront", false);
         }
         // back
         if (Input.GetKey(KeyCode.S)) {
             transform.position += Vector3.right * speed * Time.deltaTime;
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isFront", true);
+        }
+
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) 
+        && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) {
+            anim.SetBool("isWalking", false);
         }
     }
 
