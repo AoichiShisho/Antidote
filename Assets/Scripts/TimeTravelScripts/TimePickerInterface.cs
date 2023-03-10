@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TimePickerInterface : IHover
 {
-    public Text PeriodDisplay;
     public Button prev, next;
     private bool isOpen = false;
     static float t = 1.0f;
